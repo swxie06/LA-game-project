@@ -3,7 +3,13 @@
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
 
-define e = Character("Eileen")
+define amy = Character("Amy")
+define me = Character("Me")
+
+transform figure_center:
+    xoffset 680
+    yoffset 205
+    #linear 1.0 xoffset 0 yoffset 0
 
 
 # The game starts here.
@@ -13,20 +19,19 @@ label start:
     # Show a background. This uses a placeholder by default, but you can
     # add a file (named either "bg room.png" or "bg room.jpg") to the
     # images directory to show it.
-
-    scene bg room
+    scene bg stage
 
     # This shows a character sprite. A placeholder is used, but you can
     # replace it by adding a file named "eileen happy.png" to the images
     # directory.
 
-    show eileen happy
+    show amy wink at figure_center
 
     # These display lines of dialogue.
 
-    e "You've created a new Ren'Py game."
+    amy "Hi."
 
-    e "Once you add a story, pictures, and music, you can release it to the world!"
+    me "This is me."
 
     # This ends the game.
 
