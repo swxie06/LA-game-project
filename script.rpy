@@ -1,7 +1,4 @@
-﻿# The script of the game goes in this file.
-
-# Declare characters used by this game. The color argument colorizes the
-# name of the character.
+﻿# Script of the game
 
 define amy = Character("Amy")
 define me = Character("Aaron")
@@ -14,51 +11,54 @@ default agree = True
 transform figure_center:
     xalign 0.5
     yoffset 208
-    #linear 1.0 xoffset 0 yoffset 0
-
 
 # The game starts here.
 label start:
     
-    # jump test # For debug
+    #jump test # For debug
 
     scene black
 
+    play sound "audio/sound/knock.mp3" volume 5
+    pause 1.2
+
     mom "Aaron! Aaron! Mom and Dad are going out for a while. "
     mom "Remember to eat breakfast when you get up. Enjoy your weekend!"
-
-    # Effect: *Main character's point of view, eyes opening with blurring effect, the room gradually appears
 
     scene bg room
     with dissolve
 
     me "Mom, please! It's been a whole week of school, and I have the right to sleep in!"
     me "(*Grumbles*) Telling me to enjoy the weekend while waking me up at nine..."
+    pause 1.0
+    play music "audio/bgm/room.mp3"
+    pause 1.0
     me "......"
     me "Well, it's finally the weekend and I have no plan for today. What shall I do to have fun?"
     me "Anyway, let's see what's new on MeTube."
 
-    #(CG: cell phone screen)
     show phone:
         xalign 0.5
         yoffset 1080
         easeout 1.5 yoffset 50
     pause
 
-    me "What's this? Idol Amy's first anniversary performance......?"
+    me "What's this? \"Idol Amy's first anniversary performance\"......?"
     me "(*Taps*)"
+    stop music fadeout 0.5
     hide phone
     with dissolve
 
     scene bg stage
     with dissolve
+    play sound "audio/sound/idol.mp3"
 
     show silhouette 1:
         xalign 0.5
         yoffset 600
         zoom 1.0
     with dissolve
-    pause 1.0
+    pause 1.5
     hide silhouette
     with dissolve
     pause 0.3
@@ -68,7 +68,7 @@ label start:
         yoffset 480
         zoom 0.9
     with dissolve
-    pause 1.0
+    pause 1.5
     hide silhouette
     with dissolve
     pause 0.3
@@ -78,7 +78,7 @@ label start:
         yoffset 350
         zoom 2.0
     with dissolve
-    pause 1.0
+    pause 1.5
     hide silhouette
     with dissolve
     pause 0.3
@@ -94,6 +94,7 @@ label start:
     amy "(*Winks*)"
     hide amy
     with dissolve
+    stop sound fadeout 0.5
 
     scene bg room
     with dissolve
@@ -112,11 +113,14 @@ label start:
         easein 1.5 yoffset 1080
     pause 2.0
 
-    show amy wink at figure_center:
+    play music "audio/bgm/room.mp3"
+    pause 2.0
+
+    show amy blur at figure_center:
         zoom 0.3
-        alpha 0.7
+        alpha 0.8
     with dissolve
-    pause
+    pause 2.0
     
     me "Got a weird feeling......"
 
@@ -127,6 +131,7 @@ label start:
             me "Is this what it's like to be a fan? I've never been one before."
             me "Her songs are pretty good. Perhaps I'll listen more when I have time."
             hide amy
+            stop music fadeout 0.5
             jump end1
 
         "I feel a connection with her":
@@ -134,13 +139,14 @@ label start:
             me "I don't know how, but when I watch her videos, I feel like she's talking to me while holding my hands."
             me "I feel so close to her that I can't help but keep watching."
             hide amy
+            stop music fadeout 0.5
             jump conversation
 
 label end1:
 
     scene black
     with dissolve
-
+    play music "audio/bgm/happy ending.mp3"
     centered "{b}END: Parasocial Relationship VS Fandom Culture{/b}"
 
     centered "{i}Although they may overlap, they are not exactly equal. While the former emphasizes the relationship between the followed and the follower, the latter deals more broadly with the appreciation of a celebrity's personality or work.{/i}"
@@ -149,15 +155,20 @@ label end1:
     jump credits
 
 label conversation:
-
     scene bg school
     with dissolve
+    play sound "audio/sound/school bell.mp3"
+    pause 3.0
+    play sound "audio/sound/people talking.mp3" fadein 0.5
+    play music "audio/bgm/school.mp3"
+    pause 2.0
 
     show friend unhappy at figure_center:
         zoom 0.3
+    with dissolve
     f "Bro, you seem to be obsessed with that idol named Amy lately, don't you?"
     f "You're so focused on her that you don't even come to our basketball games anymore."
-    f "Nor have you shown up at the Rock n' Roll club."
+    f "Nor have you shown up in the Rock n' Roll club."
     f "Seems like she's more of a close friend to you than we are, huh?"
 
     me "(*Slightly embarrased*)"
@@ -178,32 +189,53 @@ label conversation:
         "Never thought that way":
             me "Well, I've never thought about it that way......"
             $ reflect = True
-            
+    
+    stop music fadeout 0.5
     jump after_convo
 
 label after_convo:
-
     scene bg room
     with dissolve
+    play music "audio/bgm/room.mp3"
+    pause 1.0
 
     me "Another week of classes...... Haven't seen Amy the last couple days with all the homework."
     me "I'm getting a bit tired of watching shows. How can I get to know her deeper and better?"
+
+    show phone:
+        xalign 0.5
+        yoffset 1080
+        easeout 1.5 yoffset 50
+    pause
+
     me "\"Amy's Interpersonal Mindset Revealed - What is Amy's Advice on Love?\""
     me "Hmm, sounds interesting! I haven't really read many of Amy's interviews. "
     me "Since I'm kind of bothered by these questions lately, let's see what Amy has to say."
     me "I expect a heart-to-heart chat with you, Amy."
+    me "(*Taps*)"
+    stop music fadeout 0.5
+    hide phone
+    with dissolve
 
     #( optional CG：Here maybe make an option for the player to choose to click into the video, and when they do, do shaking effects or something, and then Amy's image appears. I'm a bit afraid it's too boring to be all text)
 
     scene bg interview
+    pause 1.0
+    play music "audio/bgm/interview.mp3"
+    pause 1.0
     show amy interview at figure_center:
         zoom 0.3
+    with dissolve
 
     amy "There are a lot of fans and friends who struggle a lot with getting along with people, and I'm the same..."
 
     amy "My ideal intimacy and love should be..."
 
-    with fade
+    show black
+    with dissolve
+    pause 1.0
+    hide black
+    with dissolve
 
     amy "Anyway, everyone has a different idea of what love is like."
     me "I can't believe she thinks this way..."
@@ -213,9 +245,13 @@ label after_convo:
 
         "It makes so much sense!":
             $ agree = True
+            me "It makes so much sense!"
             
         "It doesn't make any sense!":
             $ agree = False
+            me "It doesn't make any sense!"
+
+    stop music fadeout 0.5
 
     if reflect:
         jump reflect
@@ -224,12 +260,12 @@ label after_convo:
 
 label reflect:
     if agree:
-        me "I told you I wasn't wrong about Amy. "
-        me "She's really a genuine and sensible person, I can learn a lot from her!"
+        me "I knew I wasn't wrong about Amy. "
+        me "She's really a genuine and sensible person, and I can learn a lot from her!"
 
         me "I know she's saying this to countless fans, not just me, but I feel especially close to her in terms of feelings and thoughts. "
         me "Might as well just take her words as advice from a good friend."
-
+        
         jump after
 
     else:
@@ -252,9 +288,12 @@ label reflect:
 label refuse:
     scene bg school
     with dissolve
+    play music "audio/bgm/school.mp3"
+    pause 1.0
 
     show friend smile at figure_center:
         zoom 0.3
+    with dissolve
     f "Hey, Aaron!"
 
     me "What — Oh, it's you."
@@ -274,9 +313,10 @@ label refuse:
         me "No, I'm not looking for anyone else."
         me "That interview made me realize that Amy gave me a unique sense of security that nobody else in the world could match."
         
+        stop music fadeout 0.5
         scene black
         with dissolve
-
+        play music "audio/bgm/happy ending.mp3"
         centered "{b}END: Sustainable Imagination and Intimacy{/b}"
 
         centered "{i}Aaron's emotional attachment to Amy is not just a fascination, but a deep spiritual resonance, a fictionalized adoration. He sees her not only as his idol, but as his dream partner.{/i}"
@@ -304,12 +344,13 @@ label refuse:
 
         me "Really? I don't think I can ever recover again."
 
+        stop music fadeout 0.5
         scene black
         with dissolve
-
+        play music "audio/bgm/sad ending.mp3"
         centered "{b}END: Broken Imagination and Intimacy{/b}"
 
-        centered "{i}Aaron and Amy's story reveals a complex intertwining of imagination, intimacy, and lust. This fascination is based on imagination, which allows one to construct a perfect, idealized image of the idol.{/i}" 
+        centered "{i}Aaron's story with Amy reveals a complex intertwining of imagination, intimacy, and lust. This fascination is based on imagination, which allows one to construct a perfect, idealized image of the idol.{/i}" 
         centered "{i}Through imagination, people can build fictional intimacy and feel even more emotionally connected and secure than they would in a real relationship.{/i}"
         centered "{i}However, when the relationship becomes too dependent on one of the partners — parasocial relationships are a more extreme example — it becomes fragile.{/i}" 
         centered "{i}Using Sternberg's Triangular Theory of Love model, this kind of love can fall into the category of fatuous love, where there is only one-way passion and commitment, but no real intimacy, and it can be easily undermined by the real actions of the loved one and lead to a more serious emotional crisis.{/i}"
@@ -317,12 +358,14 @@ label refuse:
         jump credits
 
 label after:
-    # （CG：School, Aaron and his friend）
     scene bg school
     with dissolve
+    play music "audio/bgm/school.mp3"
+    pause 1.0
 
     show friend smile at figure_center:
         zoom 0.3
+    with dissolve
     f "I used to worry about your obsession with Amy, but now you're pretty OK!"
 
     me "Yeah, it's so great to see you guys again in the clubs."
@@ -339,8 +382,10 @@ label after:
                 me "I never knew that I would be good at music before!"
                 me "One day I'll invite you guys to my rock concert, haha!"
 
+                stop music fadeout 0.5
                 scene black
                 with dissolve
+                play music "audio/bgm/happy ending.mp3"
                 centered "{b}END: Successful Love & Identity Formation - Self Expansion{/b}"
 
                 centered "{i}Like any other loving relationship, parasocial relationships also play an important role in a person's self-identity formation, especially for adolescents, who are in the Identity vs. Confusion stage as suggested by Erikson.{i}"
@@ -355,8 +400,10 @@ label after:
                 me "Thanks to Amy's interview, I've figured out how to get what she's thinking and express myself better."
                 me "I guess I'll just move on with my life, as usual."
 
+                stop music fadeout 0.5
                 scene black
                 with dissolve
+                play music "audio/bgm/happy ending.mp3"
                 centered "{b}END: Successful Love & Identity Formation - Social Engagement{/b}"
 
                 centered "{i}One of the important factors in the process of adolescents' identity formation is social engagement, which refers to the co-existence of different relationships around them."
@@ -376,9 +423,10 @@ label after:
                 me "Some of Amy's opinions made me uneasy, and because of that, I've even read more books so that I can do better in our debates."
                 me "— In my imagination of course, haha!"
 
+                stop music fadeout 0.5
                 scene black
                 with dissolve
-                
+                play music "audio/bgm/happy ending.mp3"
                 centered "{b}END: Diminished Love & Identity Formation - Self Expansion{/b}"
 
                 centered "{i}Like any other loving relationship, parasocial relationships also play an important role in a person's self-identity formation, especially for adolescents, who are in the Identity vs. Confusion stage as suggested by Erikson.{/i}"
@@ -394,9 +442,10 @@ label after:
                 me "......"
                 me "Anyway, I still think I'm lucky to have gone through all this. It has taught me a lot about happiness, conflicts and balance in a relationship."
 
+                stop music fadeout 0.5
                 scene black
                 with dissolve
-
+                play music "audio/bgm/happy ending.mp3"
                 centered "{b}END: Diminished Love & Identity Formation - Social Engagement{/b}"
 
                 centered "{i}One of the important factors in the process of adolescents' identity formation is social engagement, which refers to the co-existence of different relationships around them.{/i}"
@@ -406,13 +455,23 @@ label after:
                 jump credits
 
 label credits:
-
     scene black
+    with dissolve
+
     centered "{b}Credits{/b}\n\n
+
+    This game is created by {i}Hedy Ye, Jiayi Tan, Lucy Xie, {/i}and {i}Leanne Lu{/i}\n\n
+
+    Engine: {i}Ren'Py{/i} \n
+    Background images: {i}unsplash.com{/i} \n
+    Character figures: {i}LiTangFeng@neka.cc, HuaCaiMianBao@neka.cc{/i} \n
+    Music and sounds: {i}freepd.com, ibaotu.com, Free Sound Effects@YouTube{/i}" 
+    with dissolve
+
+    centered "{b}Thank you for playing :){/b}"
+    with dissolve
+
+    stop music fadeout 0.5
     
-    Images by __ \n
-    Music by __" # credits here?
-
-    # This ends the game.
-
+    # Game ends
     return
