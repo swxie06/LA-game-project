@@ -14,66 +14,130 @@ default agree = True
 image black = Solid("#000")
 
 transform figure_center:
-    xoffset 680
-    yoffset 205
+    xalign 0.5
+    yoffset 208
     #linear 1.0 xoffset 0 yoffset 0
 
 
 # The game starts here.
-
 label start:
+    
+    # jump test # For debug
 
-    # Show a background. This uses a placeholder by default, but you can
-    # add a file (named either "bg room.png" or "bg room.jpg") to the
-    # images directory to show it.
-    scene bg stage
+    scene black
 
-    # This shows a character sprite. A placeholder is used, but you can
-    # replace it by adding a file named "eileen happy.png" to the images
-    # directory.
+    mom "Aaron! Aaron! Mom and Dad are going out for a while. "
+    mom "Remember to eat breakfast when you get up. Enjoy your weekend!"
 
-    show amy wink at figure_center
+    # Effect: *Main character's point of view, eyes opening with blurring effect, the room gradually appears
 
-    # These display lines of dialogue.
-
-    show black
-
-    mom "Aaron! Aaron! Your dad and I are going out for a while. Remember to eat breakfast when you get up. Enjoy your weekend."
-
-    #*Main character's point of view, eyes opening with blurring effect, the room gradually appears
-    #(CG: Aaron's room, with different posters or decorations on the walls if possible, to show teenagers' personalities)
-
-    scene bg stage # replace this with above
+    scene bg room # replace this with above
     with dissolve
 
-    me "Mom, it's still early, don't wake me up on weekend mornings from now on. It's been a whole week of school, I have the right to wake up slowly on the weekends."
-
-    me "(Well it's finally the weekend and I don't have any fun plans, what should I do today? Anyway, let's play with my phone first.)"
+    me "Mom, please! It's been a whole week of school, and I have the right to sleep in!"
+    me "(*Grumbles*) Telling me to enjoy the weekend while waking me up at nine..."
+    me "......"
+    me "Well, it's finally the weekend and I have no plan for today. What shall I do to have fun?"
+    me "Anyway, let's see what's new on MeTube."
 
     #(CG: cell phone screen)
+    show phone:
+        xalign 0.5
+        yoffset 1080
+        easeout 1.5 yoffset 50
+    pause
 
-    me "What's this? Idol Amy's first anniversary performance......? Let me see it."
+    me "What's this? Idol Amy's first anniversary performance......?"
+    me "(*Taps*)"
+    hide phone
+    with dissolve
 
-    # (CG: Amy)
-    #(maybe a few more pictures of different poses here, with bgm, to show that she’s singing and dancing)
+    scene bg stage
+    with dissolve
 
-    me "(*humming*) That's nice! I feel like I'm lifted up. Why don't I check out her other shows?"
+    show silhouette 1:
+        xalign 0.5
+        yoffset 600
+        zoom 1.0
+    with dissolve
+    pause 1.0
+    hide silhouette
+    with dissolve
+    pause 0.3
+
+    show silhouette 2:
+        xalign 0.6
+        yoffset 480
+        zoom 0.9
+    with dissolve
+    pause 1.0
+    hide silhouette
+    with dissolve
+    pause 0.3
+
+    show silhouette 3:
+        xalign 0.4
+        yoffset 350
+        zoom 2.0
+    with dissolve
+    pause 1.0
+    hide silhouette
+    with dissolve
+    pause 0.3
+
+    show amy normal at figure_center:
+        zoom 0.3
+    with dissolve
+
+    amy "Hi everyone! Thank you all for coming today!"
+
+    show amy wink at figure_center:
+        zoom 0.3
+    amy "(*Winks*)"
+    hide amy
+    with dissolve
+
+    scene bg room
+    with dissolve
+    show phone:
+        xalign 0.5
+        yoffset 50
+
+    me "(*Humming*) That's nice! Feels like I'm lifted up. Why not check out her other shows?"
 
     #(optional CG: screen scrolling or similar effect)
     #(optional CG: Amy's other performances)
+        
+    show phone:
+        xalign 0.5
+        yoffset 50
+        easein 1.5 yoffset 1080
+    pause 2.0
+
+    show amy wink at figure_center:
+        zoom 0.3
+        alpha 0.7
+    with dissolve
+    pause
+    
+    me "Got a weird feeling......"
 
     menu:
-
         me "Got a weird feeling......"
-
+        
         # I tried shortening the choices to make it flow better
 
         "I like her music":
-            me "Is this what it's like to be a fan? I've never been one before. Her songs are pretty good, so I'll listen to more of them when I have time."
+            me "Is this what it's like to be a fan? I've never been one before."
+            me "Her songs are pretty good. Perhaps I'll listen more when I have time."
+            hide amy
             jump end1
 
-        "I feel a connection with her...":
-            me "How do I feel like I'm getting to know her, when it's obvious we're not even in contact? I don't know how, but when I watch her videos, I feel like she's talking to me while holding my hands. I feel so close to her that I can't help but keep watching."
+        "I feel a connection with her":
+            me "Why do I feel as if I'm getting to know her? We're not even in contact!"
+            me "I don't know how, but when I watch her videos, I feel like she's talking to me while holding my hands."
+            me "I feel so close to her that I can't help but keep watching."
+            hide amy
             jump conversation
 
 label end1:
@@ -88,43 +152,52 @@ label end1:
 
 label conversation:
 
-    #(CG: school + image of two people)
-    # aaron on the left, friend on the right?
+    scene bg school
 
-    f "Bro, you seem to be obsessed with that idol named Amy lately, don't you? You're so focused on her that you don't even come to basketball practice or book club."
-    f "Is it possible that she's more of a close friend to you than we are?"
+    show friend unhappy at figure_center:
+        zoom 0.3
+    f "Bro, you seem to be obsessed with that idol named Amy lately, don't you?"
+    f "You're so focused on her that you don't even come to our basketball games anymore."
+    f "Nor have you showed up at the Rock n' Roll club."
+    f "Seems like she's more of a close friend to you than we are, huh?"
 
-    me "(slightly embarrased)"
+    me "(*Slightly embarrased*)"
 
-    f "I'm just saying that off the top of my head haha..."
+    show friend smile at figure_center:
+        zoom 0.3
+    f "Never mind. I'm just saying that off the top of my head haha..."
+    f "I know she's pretty cute man, but shouldn't you care about the other parts of life too?"
 
     menu:
-
-        f "I know she's pretty and fun, but shouldn't you care about the other parts of life too?"
-        "You're saying that 'cause you don't know about how great Amy is! Let's not talk about this.":
+        f "I know she's pretty cute man, but shouldn't you care about the other parts of life too?"
+        "You don't know about her":
+            me "You're saying that 'cause you don't know how great Amy is!"
+            show friend unhappy at figure_center:
+                zoom 0.3
+            me "Go watch her show or let's just not talk about this."
             $ reflect = False
-        "Well... I didn't think that way...":
+        "Never thought that way":
+            me "Well, I've never thought about it that way......"
             $ reflect = True
             
     jump after_convo
 
 label after_convo:
 
-    #（CG ： Aaron’s room，Aaron）
+    scene bg room
 
-    me "Another week of classes, haven't seen Amy the last couple days with all the homework."
-
-    me "Also I'm a little tired of watching shows. Where can I find ways to get to know her better on a deeper level?"
-
+    me "Another week of classes...... Haven't seen Amy the last couple days with all the homework."
+    me "I'm getting a bit tired of watching shows. How can I get to know her deeper and better?"
     me "\"Amy's Interpersonal Mindset Revealed - What is Amy's Advice on Love?\""
-
-    me "Umm sounds interesting! I haven't really read many of Amy's interviews. Since I'm kind of bothered by these questions, let's see what Amy has to say."
-
+    me "Hmm, sounds interesting! I haven't really read many of Amy's interviews. "
+    me "Since I'm kind of bothered by these questions lately, let's see what Amy has to say."
     me "I expect a heart-to-heart chat with you, Amy."
 
     #( optional CG：Here maybe make an option for the player to choose to click into the video, and when they do, do shaking effects or something, and then Amy's image appears. I'm a bit afraid it's too boring to be all text)
 
-    # (CG: Interview Hall,  Amy)
+    scene bg interview
+    show amy interview at figure_center:
+        zoom 0.3
 
     amy "There are a lot of fans and friends who struggle a lot with getting along with people, and I'm the same..."
 
@@ -133,6 +206,7 @@ label after_convo:
     with fade
 
     amy "Anyway, everyone has a different idea of what love is like."
+    me "I can't believe she thinks this way..."
 
     menu:
         me "I can't believe she thinks this way..."
@@ -150,42 +224,55 @@ label after_convo:
 
 label reflect:
     if agree:
-        me "I told you I wasn't wrong about Amy. She's really a genuine and sensible person, I can learn a lot from her!"
+        me "I told you I wasn't wrong about Amy. "
+        me "She's really a genuine and sensible person, I can learn a lot from her!"
 
-        me "I know she's answering to countless fans, but I feel especially close to her in terms of feelings and thoughts. Might as well just take her words as advice from a good friend."
+        me "I know she's saying this to countless fans, not just me, but I feel especially close to her in terms of feelings and thoughts. "
+        me "Might as well just take her words as advice from a good friend."
 
         jump after
 
     else:
-        me "Although I liked Amy so much, I can't agree with her on this aspect of love."
+        me "Although I liked Amy so much, I can't agree with her on this perspective."
+        me "Now I don't even know what to do with my love for her..."
 
         menu:
-            me "Now I don't even know what I'm going to do about my love..."
+            me "Now I don't even know what to do with my love for her..."
 
-            "Whatever, I was drawn to her because of her talent and the uplift she brought; not because she thought exactly like me.":
+            "Maybe it doesn't hurt that much......":
+                me "Whatever! I was drawn to her because of her talent and the uplift she brought, not because her ideas were exactly the same as mine."
                 jump after
 
-            "Since our views are so different in principle, I don't really see the need to maintain the love.":
+            "Fine, we're done!":
+                "Since our views are so different in principle, I can't see the point to love her anymore."  
                 jump after
 
 
 
 label refuse:
-    # （CG：school, Aaron and his friend）
+    scene bg school
 
-    f "Hey Aaron!"
+    show friend smile at figure_center:
+        zoom 0.3
+    f "Hey, Aaron!"
 
-    me "What... oh, it's you."
+    me "What- Oh, it's you."
 
-    f "You've been in a trance lately, and it's getting harder and harder for us to talk to you. How do you do? What about the idol?"
+    f "You've been in a trance lately, and it's getting harder and harder for us to get a chance to talk to you."
+    f "How's everything going? What about the idol?"
 
     if agree:
-        me "Amy's interview expressing her views on love and companionship really resonated with me and made me think. From the moment I watched the interview, I felt like she was that special person in my life."
+        me "I watched Amy's interview expressing her views on love and companionship. It really resonated with me and made me think."
+        me "From the moment I watched the interview, I've been feeling like she's that special person in my life."
         
-        f "But Amy is an idol, your admiration is one-sided, and you can't really be with Amy. Are you sure you don't want to rethink your decision?"
+        show friend unhappy at figure_center:
+            zoom 0.3
+        f "Oh! But she is an idol and she doesn't even know you!"
+        f "Your admiration is one-sided, and you can't really be with Amy. Are you sure you're gonna stick to this?"
 
-        me "No, I'm not looking for anyone else. Because that interview made me realize that Amy gave me a unique sense of security that no one else could match."
-
+        me "No, I'm not looking for anyone else."
+        me "That interview made me realize that Amy gave me a unique sense of security that nobody else in the world could match."
+        
         "{b}END: Sustainable Imagination and Intimacy{/b}"
 
         "{i}Aaron's emotional attachment to Amy is not just a fascination, but a deep spiritual resonance, a fictionalized adoration. He sees her not only as his idol, but as his dream partner.{/i}"
@@ -195,13 +282,21 @@ label refuse:
 
         return
     else:
-        me "I thought she resonated with me, but she has a completely different perspective on relationships and I'm really disappointed."
+        me "Not great at all."
+        me "I thought she resonated with me, but she has a completely different perspective on relationships."
+        me "I was so disappointed and just couldn't believe it."
 
-        f "That must be so hard, Aaron."
+        show friend unhappy at figure_center:
+            zoom 0.3
+        f "That must be tough, Aaron."
 
-        me "Yes, I feel betrayed and heartbroken. I used to think that there was a similar connection between our emotions seeing her as the object of my affection, but now I realize that there is a difference in our views on relationships and it's killing me."
+        me "Yeah, I feel betrayed and heartbroken."
+        me "I used to sense a comparable emotional bond, viewing her as the subject of my affection."
+        me "But now, I see we're not on the same page about relationships, and it's really getting to me."
 
-        f "Time will slowly heal everything Aaron. Maybe it's just a tough time and you'll come out of it."
+        show friend smile at figure_center:
+            zoom 0.3
+        f "I know, man. Time will slowly heal everything. It's just a tough moment and you'll come out of it."
 
         me "Really? I don't think I can ever recover again."
 
@@ -217,18 +312,25 @@ label refuse:
 
 label after:
     # （CG：School, Aaron and his friend）
+    scene bg school
 
+    show friend smile at figure_center:
+        zoom 0.3
     f "I used to worry about your obsession with Amy, but now you're pretty OK!"
 
     me "Yeah, it's so great to see you guys again in the clubs."
+
+    f "What about the idol? You're not into her anymore?"
 
     if agree:
         menu:
             f "What about the idol? You don't like her anymore?"
 
             "I wouldn't say I dislike her now":
-                me "But she's just a part of my life and experience... not everything. However, I'd like to thank her for letting me learn more about myself and my potential."
-                me "I never knew that I would be good at music before! One day I'll invite you guys to see me playing guitar, haha!"
+                me "But she's just a part of my life and experience... not everything."
+                me "But still, I'd like to thank her for letting me learn more about myself and my potentials."
+                me "I never knew that I would be good at music before!"
+                me "One day I'll invite you guys to my rock concert, haha!"
 
                 "{b}END: Successful Love & Identity Formation - Self Expansion{/b}"
 
@@ -240,7 +342,9 @@ label after:
                 return
 
             "I still like her!":
-                me "But I met a new girl in our club that I also find attractive... and thanks to Amy, I learned how to express and understand the girl's thoughts."
+                me "But hey, there's this new girl in our club, and I kinda like her too."
+                me "Thanks to Amy's interview, I've figured out how to get what she's thinking and express myself better."
+                me "I guess I'll just move on with my life, as usual."
 
                 "{b}END: Successful Love & Identity Formation - Social Engagement{/b}"
 
@@ -255,10 +359,12 @@ label after:
             f "What about the idol? You don't like her anymore?"
             
             "I wouldn't say I dislike her":
-                me "But as time goes on I can see imperfections in her, and don't misunderstand me, I don't think imperfections or differences are unacceptable..."
-                
-                me "I just realize that even a loved one can't be everything. I want to use my passion in a more balanced and rich way."
-                me "You know what, because of some of Amy's opinions that discomfort me, I even read more books so that I can do better in our debates — which of course is imagined, haha!"
+                me "But as time goes by I see imperfections in her......"
+                me "Don't get me wrong! I know imperfections and differences are not unacceptable."
+                me "I just realized that even a loved one can't be everything. It's better to use my passion in a more balanced and enriching way."
+                me "And you know what?"
+                me "Some of Amy's opinions made me uneasy, and because of that, I've even read more books so that I can do better in our debates."
+                me "— In my imagination of course, haha!"
 
                 "{b}END: Diminished Love & Identity Formation - Self Expansion{/b}"
 
@@ -271,8 +377,10 @@ label after:
                 return
 
             "I must admit that I've lost the passion now":
-                me "Some of her opinions are kinda unacceptable for me so I quit. Such a feeling is very similar to an actual break up, which may sound weird..."
-                me "However, I think I am lucky to have had this relationship, as it told me a lot about the happiness, conflicts and balance in relationships."
+                me "Some of her opinions are just unacceptable, so I quitted."
+                me "I know this might sound weird, but I feel like actually breaking up with someone......"
+                me "......"
+                me "Anyway, I still think I'm lucky to have gone through all this. It has taught me a lot about happiness, conflicts and balancing in a relationship."
 
                 "{b}END: Diminished Love & Identity Formation - Social Engagement{/b}"
 
