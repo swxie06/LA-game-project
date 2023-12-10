@@ -6,12 +6,10 @@
 define amy = Character("Amy")
 define me = Character("Aaron")
 define mom = Character("Mom")
-define f = Character("Friend")
+define f = Character("Michael")
 
 default refuse = True
 default agree = True
-
-image black = Solid("#000")
 
 transform figure_center:
     xalign 0.5
@@ -31,7 +29,7 @@ label start:
 
     # Effect: *Main character's point of view, eyes opening with blurring effect, the room gradually appears
 
-    scene bg room # replace this with above
+    scene bg room
     with dissolve
 
     me "Mom, please! It's been a whole week of school, and I have the right to sleep in!"
@@ -124,8 +122,6 @@ label start:
 
     menu:
         me "Got a weird feeling......"
-        
-        # I tried shortening the choices to make it flow better
 
         "I like her music":
             me "Is this what it's like to be a fan? I've never been one before."
@@ -142,23 +138,26 @@ label start:
 
 label end1:
 
-    "{b}END: Parasocial Relationship VS Fandom Culture{/b}"
+    scene black
+    with dissolve
 
-    "{i}Although they may overlap, they are not exactly equal. While the former emphasizes the relationship between the followed and the follower, the latter deals more broadly with the appreciation of a celebrity's personality or work.{/i}"
-    "{i}Taken together, in the modern context parasocial relationships are an offshoot of fandom culture, embodying the behaviors and attitudes of followers who are deeply invested in a one-sided relationship,{/i}"
-    "{i}but many followers also choose not to enter into this level of relationship. Overall, parasocial relationships offer more of a sense of spiritual intimacy.{/i}"
+    centered "{b}END: Parasocial Relationship VS Fandom Culture{/b}"
+
+    centered "{i}Although they may overlap, they are not exactly equal. While the former emphasizes the relationship between the followed and the follower, the latter deals more broadly with the appreciation of a celebrity's personality or work.{/i}"
+    centered "{i}Taken together, in the modern context parasocial relationships are an offshoot of fandom culture, embodying the behaviors and attitudes of followers who are deeply invested in a one-sided relationship, but many followers also choose not to enter into this level of relationship. Overall, parasocial relationships offer more of a sense of spiritual intimacy.{/i}"
     
-    return
+    jump credits
 
 label conversation:
 
     scene bg school
+    with dissolve
 
     show friend unhappy at figure_center:
         zoom 0.3
     f "Bro, you seem to be obsessed with that idol named Amy lately, don't you?"
     f "You're so focused on her that you don't even come to our basketball games anymore."
-    f "Nor have you showed up at the Rock n' Roll club."
+    f "Nor have you shown up at the Rock n' Roll club."
     f "Seems like she's more of a close friend to you than we are, huh?"
 
     me "(*Slightly embarrased*)"
@@ -185,6 +184,7 @@ label conversation:
 label after_convo:
 
     scene bg room
+    with dissolve
 
     me "Another week of classes...... Haven't seen Amy the last couple days with all the homework."
     me "I'm getting a bit tired of watching shows. How can I get to know her deeper and better?"
@@ -244,19 +244,20 @@ label reflect:
                 jump after
 
             "Fine, we're done!":
-                "Since our views are so different in principle, I can't see the point to love her anymore."  
+                me "Since our views are so different in principle, I can't see the point to love her anymore."  
                 jump after
 
 
 
 label refuse:
     scene bg school
+    with dissolve
 
     show friend smile at figure_center:
         zoom 0.3
     f "Hey, Aaron!"
 
-    me "What- Oh, it's you."
+    me "What — Oh, it's you."
 
     f "You've been in a trance lately, and it's getting harder and harder for us to get a chance to talk to you."
     f "How's everything going? What about the idol?"
@@ -273,14 +274,17 @@ label refuse:
         me "No, I'm not looking for anyone else."
         me "That interview made me realize that Amy gave me a unique sense of security that nobody else in the world could match."
         
-        "{b}END: Sustainable Imagination and Intimacy{/b}"
+        scene black
+        with dissolve
 
-        "{i}Aaron's emotional attachment to Amy is not just a fascination, but a deep spiritual resonance, a fictionalized adoration. He sees her not only as his idol, but as his dream partner.{/i}"
-        "{i}This one-way emotional connection, though born of distant observation and fantasy, forges a flawless love in Aaron's heart.{/i}"
-        "{i}This one-way emotional attachment, though based on fiction, builds an emotional sanctuary in Aaron's heart where Amy becomes a deity.{/i}" 
-        "{i}In this sanctuary of the heart, Aaron finds an emotional home, even if it exists only in his imagination. Steeping in that kind of love often prevents people from having truly meaningful relationships.{/i}"
+        centered "{b}END: Sustainable Imagination and Intimacy{/b}"
 
-        return
+        centered "{i}Aaron's emotional attachment to Amy is not just a fascination, but a deep spiritual resonance, a fictionalized adoration. He sees her not only as his idol, but as his dream partner.{/i}"
+        centered "{i}This one-way emotional connection, though born of distant observation and fantasy, forges a flawless love in Aaron's heart.{/i}"
+        centered "{i}This one-way emotional attachment, though based on fiction, builds an emotional sanctuary in Aaron's heart where Amy becomes a deity.{/i}" 
+        centered "{i}In this sanctuary of the heart, Aaron finds an emotional home, even if it exists only in his imagination. Steeping in that kind of love often prevents people from having truly meaningful relationships.{/i}"
+
+        jump credits
     else:
         me "Not great at all."
         me "I thought she resonated with me, but she has a completely different perspective on relationships."
@@ -300,19 +304,22 @@ label refuse:
 
         me "Really? I don't think I can ever recover again."
 
-        "{b}END: Broken Imagination and Intimacy{/b}"
+        scene black
+        with dissolve
 
-        "{i}Aaron and Amy's story reveals a complex intertwining of imagination, intimacy, and lust. This fascination is based on imagination, which allows one to construct a perfect, idealized image of the idol.{/i}" 
-        "{i}Through imagination, people can build fictional intimacy and feel even more emotionally connected and secure than they would in a real relationship.{/i}"
-        "{i}However, when the relationship becomes too dependent on one of the partners-parasocial relationships are a more extreme example-it becomes fragile.{/i}" 
-        "{i}Using the Love Triangle model, this kind of love can fall into the category of fatuous love, where there is only one-way intimacy and commitment, but no real intimacy,{/i}"
-        "{i}and it can be easily undermined by the real actions of the loved one and lead to a more serious emotional crisis.{/i}"
+        centered "{b}END: Broken Imagination and Intimacy{/b}"
 
-        return
+        centered "{i}Aaron and Amy's story reveals a complex intertwining of imagination, intimacy, and lust. This fascination is based on imagination, which allows one to construct a perfect, idealized image of the idol.{/i}" 
+        centered "{i}Through imagination, people can build fictional intimacy and feel even more emotionally connected and secure than they would in a real relationship.{/i}"
+        centered "{i}However, when the relationship becomes too dependent on one of the partners — parasocial relationships are a more extreme example — it becomes fragile.{/i}" 
+        centered "{i}Using Sternberg's Triangular Theory of Love model, this kind of love can fall into the category of fatuous love, where there is only one-way passion and commitment, but no real intimacy, and it can be easily undermined by the real actions of the loved one and lead to a more serious emotional crisis.{/i}"
+
+        jump credits
 
 label after:
     # （CG：School, Aaron and his friend）
     scene bg school
+    with dissolve
 
     show friend smile at figure_center:
         zoom 0.3
@@ -324,7 +331,7 @@ label after:
 
     if agree:
         menu:
-            f "What about the idol? You don't like her anymore?"
+            f "What about the idol? You're not into her anymore?"
 
             "I wouldn't say I dislike her now":
                 me "But she's just a part of my life and experience... not everything."
@@ -332,31 +339,34 @@ label after:
                 me "I never knew that I would be good at music before!"
                 me "One day I'll invite you guys to my rock concert, haha!"
 
-                "{b}END: Successful Love & Identity Formation - Self Expansion{/b}"
+                scene black
+                with dissolve
+                centered "{b}END: Successful Love & Identity Formation - Self Expansion{/b}"
 
-                "{i}Like any other loving relationship, parasocial relationships also play an important role in a person's self-identity formation, especially for adolescents, who are in the Identity vs. Confusion stage as suggested by Erikson.{i}"
-                "{i}In a two-way relationship, people get support from each other: the possibility of exploring more of their self-identity and the support to be able to settle new identities.{/i}" 
-                "{i}While parasocial relationships are unidirectional, relationships can still have a profound effect on adolescents who are in the identity formation stage.{/i}" 
-                "{i}In the space of a new relationship, people can gain a deeper and more comprehensive understanding of themselves and establish new interests and values. A successful relationship can lead to an overall perception of stability and harmony.{/i}"
+                centered "{i}Like any other loving relationship, parasocial relationships also play an important role in a person's self-identity formation, especially for adolescents, who are in the Identity vs. Confusion stage as suggested by Erikson.{i}"
+                centered "{i}In a two-way relationship, people get support from each other: the possibility of exploring more of their self-identity and the support to be able to settle new identities.{/i}" 
+                centered "{i}While parasocial relationships are unidirectional, relationships can still have a profound effect on adolescents who are in the identity formation stage.{/i}" 
+                centered "{i}In the space of a new relationship, people can gain a deeper and more comprehensive understanding of themselves and establish new interests and values. A successful relationship can lead to an overall perception of stability and harmony.{/i}"
                 
-                return
+                jump credits
 
             "I still like her!":
                 me "But hey, there's this new girl in our club, and I kinda like her too."
                 me "Thanks to Amy's interview, I've figured out how to get what she's thinking and express myself better."
                 me "I guess I'll just move on with my life, as usual."
 
-                "{b}END: Successful Love & Identity Formation - Social Engagement{/b}"
+                scene black
+                with dissolve
+                centered "{b}END: Successful Love & Identity Formation - Social Engagement{/b}"
 
-                "{i}One of the important factors in the process of adolescents' identity formation is social engagement, which refers to the co-existence of different relationships around them."
-                "{i}Adolescents desire more social connection because, on the one hand, it fulfills emotional needs, and on the other hand, by exploring the relationship itself, one can establish a model of how to relate to the outside world,{/i}" 
-                "{i}a resolution that will guide the adolescent's future responses when faced with other social situations-good, loving relationships that lead to positive, stable outcomes.{/i}"
-                "{i}Parasocial relationships, one example of this developmental pathway for adolescents, prepare them for more types of love and connection. In their social engagement system, different relationships relate to and support each other.{/i}"
+                centered "{i}One of the important factors in the process of adolescents' identity formation is social engagement, which refers to the co-existence of different relationships around them."
+                centered "{i}Adolescents desire more social connection because, on the one hand, it fulfills emotional needs, and on the other hand, by exploring the relationship itself, one can establish a model of how to relate to the outside world, a resolution that will guide the adolescent's future responses when faced with other social situations—good, loving relationships that lead to positive, stable outcomes.{/i}"
+                centered "{i}Parasocial relationships, one example of this developmental pathway for adolescents, prepare them for more types of love and connection. In their social engagement system, different relationships relate to and support each other.{/i}"
 
-                return
+                jump credits
     else:
         menu:
-            f "What about the idol? You don't like her anymore?"
+            f "What about the idol? You're not into her anymore?"
             
             "I wouldn't say I dislike her":
                 me "But as time goes by I see imperfections in her......"
@@ -366,30 +376,43 @@ label after:
                 me "Some of Amy's opinions made me uneasy, and because of that, I've even read more books so that I can do better in our debates."
                 me "— In my imagination of course, haha!"
 
-                "{b}END: Diminished Love & Identity Formation - Self Expansion{/b}"
+                scene black
+                with dissolve
+                
+                centered "{b}END: Diminished Love & Identity Formation - Self Expansion{/b}"
 
-                "{i}Like any other loving relationship, parasocial relationships also play an important role in a person's self-identity formation, especially for adolescents, who are in the Identity vs. Confusion stage as suggested by Erikson.{/i}"
-                "{i}In a two-way relationship, people get support from each other: the possibility of exploring more of their self-identity and the support of being able to settle a new identity{/i}"
-                "{i}While parasocial relationships are unidirectional, the relationship can still have a profound effect on adolescents who are in the identity formation stage.{/i}" 
-                "{i}Even if the passionate proportion of this love diminishes due to time or certain events, the foundation it lays for the future does not disappear.{/i}" 
-                "{i}Rather, the challenges suffered in new relationships can help adolescents develop stronger new identities upon reflection.{/i}"
+                centered "{i}Like any other loving relationship, parasocial relationships also play an important role in a person's self-identity formation, especially for adolescents, who are in the Identity vs. Confusion stage as suggested by Erikson.{/i}"
+                centered "{i}In a two-way relationship, people get support from each other: the possibility of exploring more of their self-identity and the support of being able to settle a new identity.{/i}"
+                centered "{i}While parasocial relationships are unidirectional, the relationship can still have a profound effect on adolescents who are in the identity formation stage.{/i}" 
+                centered "{i}Even if the passionate proportion of this love diminishes due to time or certain events, the foundation it lays for the future does not disappear. Rather, the challenges suffered in new relationships can help adolescents develop stronger new identities upon reflection.{/i}"
             
-                return
+                jump credits
 
             "I must admit that I've lost the passion now":
-                me "Some of her opinions are just unacceptable, so I quitted."
-                me "I know this might sound weird, but I feel like actually breaking up with someone......"
+                me "Some of her opinions are just unacceptable, so I quit."
+                me "I know this might sound weird, but it feels like actually breaking up with someone......"
                 me "......"
-                me "Anyway, I still think I'm lucky to have gone through all this. It has taught me a lot about happiness, conflicts and balancing in a relationship."
+                me "Anyway, I still think I'm lucky to have gone through all this. It has taught me a lot about happiness, conflicts and balance in a relationship."
 
-                "{b}END: Diminished Love & Identity Formation - Social Engagement{/b}"
+                scene black
+                with dissolve
 
-                "{i}One of the important factors in the process of adolescents' identity formation is social engagement, which refers to the co-existence of different relationships around them.{/i}"
-                "{i}Adolescents desire more social connection because, on the one hand, it fulfills emotional needs and, on the other hand, by exploring the relationships themselves, one can establish patterns of relating to the outside world,{/i}" 
-                "{i}a resolution that will guide the adolescent's future responses when confronted with other social situations.{/i}" 
-                "{i}It is worth noting that while consummate love can lead to positive and stable outcomes, lost love may not always incur negative consequences. If handled properly, a loss can also teach one to deal more appropriately with distance and affection for others.{/i}"
+                centered "{b}END: Diminished Love & Identity Formation - Social Engagement{/b}"
 
-                return
+                centered "{i}One of the important factors in the process of adolescents' identity formation is social engagement, which refers to the co-existence of different relationships around them.{/i}"
+                centered "{i}Adolescents desire more social connection because, on the one hand, it fulfills emotional needs and, on the other hand, by exploring the relationships themselves, one can establish patterns of relating to the outside world, a resolution that will guide the adolescent's future responses when confronted with other social situations.{/i}" 
+                centered "{i}It is worth noting that while consummate love can lead to positive and stable outcomes, lost love may not always incur negative consequences. If handled properly, a loss can also teach one to deal more appropriately with distance and affection for others.{/i}"
+
+                jump credits
+
+label credits:
+
+    scene black
+    centered "{b}Credits{/b}\n\n
+    
+    Images by __ \n
+    Music by __" # credits here?
+
     # This ends the game.
 
     return
